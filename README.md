@@ -5,3 +5,6 @@ If BM-SC application is running on RHEL then [pcs status commands](https://acces
 The resources name may vary as per vendor. I picked up the resources which show Master DB and Active CP or UP instances with grep and awk. The playbook registered the resuld and diplay it in a task advising that snapshots of standby nodes are recommended first if you plan to bakcup VMs/instances. 
 
 BM-SC_Openstack-Snapshot has palybook to take snapshot of VNF instance as per user input.
+
+BM-SC group in the inventory should have all the hosts (IPs/FQDN) of VNF. ansible_connection=ssh, ansible_user=user, ansible_ssh_pass=password and ansible_sudo_pass=sudo password should also be the part of inventory
+
