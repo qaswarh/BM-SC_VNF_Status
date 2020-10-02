@@ -1,0 +1,18 @@
+---
+
+- hosts: BM-SC
+  gather_facts: false
+
+  tasks:
+    - name: Please wait, BM-SC cluster status being checked ...
+      become: yes
+      shell:
+        cmd: |
+          export PATH=$PATH:/usr/sbin 
+          pcs status | grep 'Application Resource string common to CP and UP' |awk '{print $4}'
+          pcs status | grep 'string show Master DB |awk '{print $3}'
+      register: result1
+
+    - name: Cluster has following nodes in Active/Master status, snapshots of standby nodes are recommended first
+      debug:
+        msg: "{{ result1.stdout_lines }}"
